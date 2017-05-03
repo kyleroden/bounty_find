@@ -13,6 +13,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
+  console.log("logging from the index directory");
   response.render('pages/index');
 });
 
