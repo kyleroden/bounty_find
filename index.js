@@ -2,6 +2,7 @@ var express = require('express');
 var faces = require('cool-ascii-faces');
 var pg = require('pg');
 var app = express();
+var request_super = require('superagent');
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -15,10 +16,25 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   console.log("logging from the index directory");
   response.render('pages/index');
+  //response.send("Hello room.");
 });
 
 app.get('/cool', function(request, response) {
   response.send(faces());
+});
+
+app.get('/bikes', function(request, response) {
+  //response.send("Bike Bounties");
+  request_super.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
+    .end((err, res) => {
+      if(err) {
+        console.log("error: ", err);
+        return response.status(500).send("there was an error in calling the bikes api");
+      }
+      console.log(res);
+      const bike_list = res.body.data.bikes;
+      response.status(200).send(bike_list);
+    });
 });
 
 app.get('/db', function(request, response) {
