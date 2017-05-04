@@ -34,7 +34,7 @@ app.get('/bikes', function(request, response) {
         console.log("error: ", err);
         return response.status(500).send("there was an error in calling the bikes api");
       }
-      console.log(res);
+      //console.log(res);
       const bike_list = res.body.data.bikes;
       //response.status(200).send(bike_list);
       response.render('pages/biketown', {results: bike_list} );
