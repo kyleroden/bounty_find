@@ -9,7 +9,8 @@
 <% include ../partials/nav.ejs %>
 
 <div class="container">
-<h2>Bike Bounty Results:</h2>
+  <h1>Current bounties: <%= results.length %></h1>
+<h3>Bike Bounty Results:</h3>
 
 <ul>
     <% results.forEach(function(r) { %>
