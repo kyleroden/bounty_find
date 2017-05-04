@@ -34,6 +34,7 @@ app.get('/bikes', function(request, response) {
       console.log(res);
       const bike_list = res.body.data.bikes;
       response.status(200).send(bike_list);
+      response.render('pages/biketown', {results: bike_list} );
     });
 });
 
