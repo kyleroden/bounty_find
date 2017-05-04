@@ -3,8 +3,9 @@ var faces = require('cool-ascii-faces');
 var pg = require('pg');
 var app = express();
 var request_super = require('superagent');
+var fs = require('fs');
 //json file with date and current count of Bounties
-var bounties = require('bounties.json');
+var bounties = require('./bounties.json');
 console.log(bounties);
 
 app.set('port', (process.env.PORT || 5000));
