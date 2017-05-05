@@ -1,8 +1,8 @@
 {
-  "name": "Start on Heroku: Node.js",
-  "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/heroku/node-js-getting-started",
-  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "name": "Biketown Bike Bounties",
+  "description": "A Node.js app of the system's bounty bikes.",
+  "repository": "https://github.com/kyleroden/bounty_find",
+  "logo": "",
   "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
+  "image": ""
 }
