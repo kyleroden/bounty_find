@@ -7,8 +7,7 @@ var app = express();
 var request_super = require('superagent');
 var fs = require('fs');
 //json file with date and current count of Bounties
-//var bounties = require('./bounties.json');
-//console.log(bounties);
+
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -27,8 +26,6 @@ app.get('/', function(request, response) {
                 console.log("error: ", err);
                 return response.status(500).send("there was an error in calling the bikes api");
             }
-
-            //console.log(res);
             const bike_list = res.body.data.bikes;
             //get the current date, then write to the json file: date: bounty count
             const current_date = new Date();
@@ -48,7 +45,7 @@ app.get('/', function(request, response) {
             response.render('pages/index', {
                 results: bike_list
             });
-        });
+        });//end openbike api call
 });
 app.get('/cool', function(request, response) {
     response.send(faces());

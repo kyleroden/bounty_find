@@ -27,7 +27,10 @@
                         <% results.forEach(function(r) { %>
                             <li>
                                 <%= r.bike_id %> -
-                                    <%= r.name %>
+                                    <%= r.name %> -
+                                        <%= r.lat %>
+                                        ,
+                                            <%= r.lon %>
                             </li>
                             <% }); %>
                     </ul>
