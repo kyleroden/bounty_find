@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var faces = require('cool-ascii-faces');
 var pg = require('pg');
@@ -5,8 +7,8 @@ var app = express();
 var request_super = require('superagent');
 var fs = require('fs');
 //json file with date and current count of Bounties
-var bounties = require('./bounties.json');
-console.log(bounties);
+//var bounties = require('./bounties.json');
+//console.log(bounties);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -44,12 +46,13 @@ app.get('/bikes', function(request, response) {
       bounty_obj.count = bike_list.length;
 
       console.log(bounty_obj);
-      fs.writeFile('./bounties.json', JSON.stringify(bounty_obj), function(err) {
-        if(err) {
-          console.log("error: ", err);
-        }
-        console.log("server wrote bounty_obj to file");
+      fs.readFile('./bounties.json', function(error, data) {
+        var json = JSON.parse(data);
+        json.entries.push(bounty_obj);
+
+        fs.writeFile('./bounties.json', JSON.stringify(json));
       });
+
       //response.status(200).send(bike_list);
       response.render('pages/biketown', {results: bike_list} );
     });
