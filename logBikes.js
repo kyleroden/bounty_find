@@ -12,6 +12,7 @@ function logBikes(){
         bounty_obj.count = bike_total;
         //check to make sure this is working from heroku server
         console.log("date variable from server: ", current_date);
+        console.log("success");
         console.log(bounty_obj);
         fs.readFile('./bounties.json', function(error, data) {
             var json = JSON.parse(data);
