@@ -13,9 +13,7 @@ function logBikes(){
         let current_bounty_inventory = response.data.bikes;
         let bike_total = current_bounty_bikes.length;
         const current_date = new Date();
-        // const bounty_obj = {};
-        // bounty_obj.date = current_date;
-        // bounty_obj.count = bike_total;
+
         //check to make sure this is working from heroku server
         console.log("date variable from server: ", current_date);
         console.log("success");
@@ -30,6 +28,7 @@ function logBikes(){
                     console.error(err);
                     response.send("ERROR ", err);
                 } else {
+                    //
                     // response.render('pages/db', {
                     //     results: result.rows
                     });
