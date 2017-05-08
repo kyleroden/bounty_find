@@ -32,10 +32,9 @@ function logBikes(){
                     // response.render('pages/db', {
                     //     results: result.rows
                     });
-                }
-            });
-        });
-   });
+                });
+            });//end pg.connect
+        };//end api call
 }
 logBikes();
 
