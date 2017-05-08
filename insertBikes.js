@@ -7,35 +7,37 @@
 var pg = require('pg');
 var request_super = require('superagent');
 
-function logBikes(){
-  request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
-      .end(function(err, response) {
-        let current_bounty_inventory = response.data.bikes;
-        let bike_total = current_bounty_bikes.length;
-        const current_date = new Date();
+function logBikes() {
+    request_super.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
+        .end(function(err, response) {
+            let current_bounty_inventory = response.data.bikes;
+            let bike_total = current_bounty_bikes.length;
+            const current_date = new Date();
 
-        //check to make sure this is working from heroku server
-        console.log("date variable from server: ", current_date);
-        console.log("success");
-        console.log(bounty_obj);
+            //check to make sure this is working from heroku server
+            console.log("date variable from server: ", current_date);
+            console.log("success");
+            console.log(bounty_obj);
 
-        //now put the data into the pg database 'bounties'
+            //now put the data into the pg database 'bounties'
 
-        pg.connect(process.env.DATABASE_URL || 'postgres://localhost:5000', function(err, client, done) {
-            client.query('INSERT INTO bounties values(' + current_date + ', ' + bike_total + ')', function(err, result) {
-                done();
-                if (err) {
-                    console.error(err);
-                    response.send("ERROR ", err);
-                } else {
-                    //
-                    // response.render('pages/db', {
-                    //     results: result.rows
-                    });
-                });
-            });//end pg.connect
-        };//end api call
-}
+            pg.connect(process.env.DATABASE_URL || 'bikebounties://localhost:5000', function(err, client, done) {
+                client.query('INSERT INTO bounties values(' + "'" + current_date + "'" + ', ' + "'" + bike_total + "'" + ')',
+                    function(err, result) {
+                        done();
+                        if (err) {
+                            console.error(err);
+                            response.send("ERROR ", err);
+                        } else {
+                            //
+                            // response.render('pages/db', {
+                            //     results: result.rows
+                        }
+                      });
+            });
+        });
+ }//end api call
+
 logBikes();
 
 //needed in order to use this script as a heroku worker
