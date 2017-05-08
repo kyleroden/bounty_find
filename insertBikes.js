@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 //INSERT INTO postgres
 //the program should make a call to the biketown api and insert into
