@@ -33,6 +33,7 @@ function logBikes() {
                             // response.render('pages/db', {
                             //     results: result.rows
                         }
+                        client.end();
                       });
             });
         });
