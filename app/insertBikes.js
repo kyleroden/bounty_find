@@ -8,6 +8,19 @@
 var pg = require('pg');
 var request_super = require('superagent');
 console.log('ran outside of logbikes function');
+
+var bountyRequest = new Request('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json');
+
+fetch(bountyRequest)
+    .then(function(response) {
+        return response.blob();
+    })
+    .then(function(response) {
+        console.log(response.data.bikes);
+        // var objectURL = URL.createObjectURL(response);
+        // myImage.src = objectURL;
+    });
+
 function logBikes() {
 
  }//end api call
