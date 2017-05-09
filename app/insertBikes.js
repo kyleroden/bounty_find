@@ -25,7 +25,7 @@ request_super.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_stat
           console.log("error: ", err);
         }
         let current_bounty_inventory = response.data.bikes;
-        let bike_total = current_bounty_bikes.length;
+        let bike_total = current_bounty_inventory.length;
         const current_date = new Date();
 
         //check to make sure this is working from heroku server
