@@ -5,8 +5,8 @@
 //the postgres db the timestamp and the current number of bike bounties
 //var express = require('express');
 //var app = express();
-var pg = require('pg');
-var request_super = require('superagent');
+// var pg = require('pg');
+// var request_super = require('superagent');
 console.log('ran outside of logbikes function');
 
 const current_date = new Date();
