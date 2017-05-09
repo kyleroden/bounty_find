@@ -22,8 +22,9 @@ const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/
 const client = new pg.Client(connectionString);
 client.connect();
 const query = client.query(
-    'INSERT INTO bounties values(' + "'" + current_date + "'" + ', ' + "'" + '41' + "'" + ')');
-query.on('end', () => {
+    'http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json');
+query.on('end', (err, res) => {
+    console.log(res);
     client.end();
 });
 //
