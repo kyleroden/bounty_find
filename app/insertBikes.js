@@ -21,6 +21,9 @@ function logBikes() {
 logBikes();
 request_super.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
     .end(function(err, response) {
+        if(err) {
+          console.log("error: ", err);
+        }
         let current_bounty_inventory = response.data.bikes;
         let bike_total = current_bounty_bikes.length;
         const current_date = new Date();
