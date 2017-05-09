@@ -7,9 +7,28 @@ const current_date = new Date();
 console.log("date variable from server: ", current_date);
 
 const request = require('superagent');
+const pg = require('pg');
 
 request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
     .set('Accept', 'application/json')
     .end(function(err, res) {
-      console.log(res);
+      if(err) {
+        console.log("error: ", err);
+      }
+      let current_bounty_inventory = response.data.bikes;
+      let bike_total = current_bounty_inventory.length;
+      //store the data in the db
+      pg.connect(process.env.DATABASE_URL || 'bikebounties://localhost:5000', function(err, client, done) {
+          client.query('INSERT INTO bounties values(' + "'" + current_date + "'" + ', ' + "'" + bike_total + "'" + ')',
+              function(err, result) {
+                  done();
+                  if (err) {
+                      console.error(err);
+                      response.send("ERROR ", err);
+                  } else {
+
+                  }
+                  client.end();
+                });
+      });
     });
