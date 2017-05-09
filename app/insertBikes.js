@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 'use strict';
 //INSERT INTO postgres
 //the program should make a call to the biketown api and insert into
@@ -21,8 +22,10 @@ const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/
 const client = new pg.Client(connectionString);
 client.connect();
 const query = client.query(
-  'INSERT INTO bounties values(' + "'" + current_date + "'" + ', ' + "'" + bike_total + "'" + ')');
-query.on('end', () => { client.end(); });
+    'INSERT INTO bounties values(' + "'" + current_date + "'" + ', ' + "'" + '41' + "'" + ')');
+query.on('end', () => {
+    client.end();
+});
 //
 // function logBikes() {
 //
