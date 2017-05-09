@@ -21,6 +21,9 @@ request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.jso
       let current_time = new Date();
       //store the data in the db
       pg.connect(process.env.DATABASE_URL || 'bikebounties://localhost:5000', function(err, client, done) {
+          if(err) {
+            console.log("error: ", err);
+          }
           client.query('INSERT INTO bounties(timestamp, inventory) values($1, $2)', [current_time, bike_total]);
           client.end();
       });
