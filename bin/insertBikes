@@ -26,7 +26,8 @@ request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.jso
           }
           client.query('INSERT INTO bounties(timestamp, inventory) values($1, $2)', [current_time, bike_total], function(error, result) {
             console.log("error: ", error);
+            client.end();
           });
-          client.end();
+
       });
     });
