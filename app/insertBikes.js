@@ -33,7 +33,7 @@ request_super.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_stat
         console.log("success");
         console.log(bounty_obj);
 
-        now put the data into the pg database 'bounties'
+        //now put the data into the pg database 'bounties'
 
         pg.connect(process.env.DATABASE_URL || 'bikebounties://localhost:5000', function(err, client, done) {
             client.query('INSERT INTO bounties values(' + "'" + current_date + "'" + ', ' + "'" + bike_total + "'" + ')',
