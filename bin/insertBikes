@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+'use strict';
+
+const current_date = new Date();
+
+//check to make sure this is working from heroku server
+console.log("date variable from server: ", current_date);
+
+const request = require('superagent');
+
+request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
+    .set('Accept', 'application/json')
+    .end(function(err, res) {
+      console.log(res);
+    });
