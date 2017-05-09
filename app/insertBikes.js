@@ -9,17 +9,10 @@ var pg = require('pg');
 var request_super = require('superagent');
 console.log('ran outside of logbikes function');
 
-var bountyRequest = new Request('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json');
+const current_date = new Date();
 
-fetch(bountyRequest)
-    .then(function(response) {
-        return response.blob();
-    })
-    .then(function(response) {
-        console.log(response.data.bikes);
-        // var objectURL = URL.createObjectURL(response);
-        // myImage.src = objectURL;
-    });
+//check to make sure this is working from heroku server
+console.log("date variable from server: ", current_date);
 
 function logBikes() {
 
