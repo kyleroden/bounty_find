@@ -1,2 +1,2 @@
 web: node index.js
-worker: node app/insertBikes.js
+worker: node bin/insertBikes
