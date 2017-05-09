@@ -15,18 +15,12 @@ const current_date = new Date();
 //check to make sure this is working from heroku server
 console.log("date variable from server: ", current_date);
 
-//differnt method
-const pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/bikebounties';
+const request = require('superagent');
 
-const client = new pg.Client(connectionString);
-client.connect();
-const query = client.query(
-    'http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json');
-query.on('end', (err, res) => {
-    console.log(res);
-    client.end();
-});
+request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
+    .end(function(err, res) {
+      console.log(res);
+    });
 //
 // function logBikes() {
 //
