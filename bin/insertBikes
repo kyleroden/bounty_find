@@ -15,7 +15,7 @@ request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.jso
       if(err) {
         console.log("error: ", err);
       }
-      let current_bounty_inventory = response.data.bikes;
+      let current_bounty_inventory = res.data.bikes;
       let bike_total = current_bounty_inventory.length;
       //store the data in the db
       pg.connect(process.env.DATABASE_URL || 'bikebounties://localhost:5000', function(err, client, done) {
@@ -24,7 +24,7 @@ request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.jso
                   done();
                   if (err) {
                       console.error(err);
-                      response.send("ERROR ", err);
+                      res.send("ERROR ", err);
                   } else {
 
                   }
