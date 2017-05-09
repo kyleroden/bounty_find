@@ -7,7 +7,7 @@
 //var app = express();
 var pg = require('pg');
 var request_super = require('superagent');
-
+console.log('ran outside of logbikes function');
 function logBikes() {
     request_super.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
         .end(function(err, response) {
