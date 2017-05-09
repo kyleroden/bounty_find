@@ -31,3 +31,4 @@ request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.jso
 
       });
     });
+process.exit();
