@@ -26,7 +26,7 @@ request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.jso
                   done();
                   if (err) {
                       console.error(err);
-                      result.send("ERROR ", err);
+                      //result.send("ERROR ", err);
                   } else {
 
                   }
