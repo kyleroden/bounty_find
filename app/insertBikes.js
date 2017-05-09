@@ -18,6 +18,7 @@ console.log("date variable from server: ", current_date);
 const request = require('superagent');
 
 request.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
+    .set('Accept', 'application/json')
     .end(function(err, res) {
       console.log(res);
     });
