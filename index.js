@@ -27,20 +27,6 @@ app.get('/', function(request, response) {
                 return response.status(500).send("there was an error in calling the bikes api");
             }
             const bike_list = res.body.data.bikes;
-            //get the current date, then write to the json file: date: bounty count
-            const current_date = new Date();
-            const bounty_obj = {};
-            bounty_obj.date = current_date;
-            bounty_obj.count = bike_list.length;
-
-            console.log(bounty_obj);
-            fs.readFile('./bounties.json', function(error, data) {
-                var json = JSON.parse(data);
-                json.entries.push(bounty_obj);
-
-                fs.writeFile('./bounties.json', JSON.stringify(json));
-            });
-
             //response.status(200).send(bike_list);
             response.render('pages/index', {
                 results: bike_list
