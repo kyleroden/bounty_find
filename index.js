@@ -5,7 +5,7 @@ var faces = require('cool-ascii-faces');
 var pg = require('pg');
 var app = express();
 var request_super = require('superagent');
-var gmaps = require('@google/maps');
+var GoogleMapsLoader = require('google-maps');
 
 //json file with date and current count of Bounties
 
@@ -29,9 +29,17 @@ app.get('/', function(request, response) {
             }
             const bike_list = res.body.data.bikes;
             //response.status(200).send(bike_list);
-            gmaps.createClient({
-              key: process.env.GMAPSKEY
-            })
+            const map_div = document.getElementById("map");
+            GoogleMapsLoader.load(function(google) {
+                new google.maps.Map(map_div, {
+                    lat: -25.363,
+                    lng: 131.044
+                });
+            });
+            bike_list.forEach(bike => {
+
+            });
+
             // map = new google.maps.Map(document.getElementById('map'), {
             //   center: {
             //     lat: 45.5236966,
@@ -42,7 +50,7 @@ app.get('/', function(request, response) {
             response.render('pages/index', {
                 results: bike_list
             });
-        });//end openbike api call
+        }); //end openbike api call
 });
 app.get('/cool', function(request, response) {
     response.send(faces());
