@@ -5,7 +5,8 @@ var faces = require('cool-ascii-faces');
 var pg = require('pg');
 var app = express();
 var request_super = require('superagent');
-var fs = require('fs');
+var gmaps = require('@google/maps');
+
 //json file with date and current count of Bounties
 
 
@@ -19,7 +20,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
     // console.log("logging from the index directory");
-
+    var map;
     request_super.get('http://biketownpdx.socialbicycles.com/opendata/free_bike_status.json')
         .end((err, res) => {
             if (err) {
@@ -28,6 +29,13 @@ app.get('/', function(request, response) {
             }
             const bike_list = res.body.data.bikes;
             //response.status(200).send(bike_list);
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {
+                lat: 45.5236966,
+                lng: -122.660585
+              },
+              zoom: 13
+            });
             response.render('pages/index', {
                 results: bike_list
             });
