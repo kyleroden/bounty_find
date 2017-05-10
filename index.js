@@ -29,13 +29,16 @@ app.get('/', function(request, response) {
             }
             const bike_list = res.body.data.bikes;
             //response.status(200).send(bike_list);
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: {
-                lat: 45.5236966,
-                lng: -122.660585
-              },
-              zoom: 13
-            });
+            gmaps.createClient({
+              key: process.env.GMAPSKEY
+            })
+            // map = new google.maps.Map(document.getElementById('map'), {
+            //   center: {
+            //     lat: 45.5236966,
+            //     lng: -122.660585
+            //   },
+            //   zoom: 13
+            // });
             response.render('pages/index', {
                 results: bike_list
             });
@@ -47,19 +50,19 @@ app.get('/cool', function(request, response) {
 
 
 app.get('/db', function(request, response) {
-    pg.connect(process.env.DATABASE_URL || 'postgres://localhost:5000', function(err, client, done) {
-        client.query('SELECT * FROM test_table', function(err, result) {
-            done();
-            if (err) {
-                console.error(err);
-                response.send("ERROR ", err);
-            } else {
-                response.render('pages/db', {
-                    results: result.rows
-                });
-            }
-        });
-    });
+    // pg.connect(process.env.DATABASE_URL || 'postgres://localhost:5000', function(err, client, done) {
+    //     client.query('SELECT * FROM test_table', function(err, result) {
+    //         done();
+    //         if (err) {
+    //             console.error(err);
+    //             response.send("ERROR ", err);
+    //         } else {
+    //             response.render('pages/db', {
+    //                 results: result.rows
+    //             });
+    //         }
+    //     });
+    // });
 });
 
 app.listen(app.get('port'), function() {
