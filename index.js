@@ -29,7 +29,7 @@ app.get('/', function(request, response) {
             }
             const bike_list = res.body.data.bikes;
             //response.status(200).send(bike_list);
-            const map_div = document.getElementById("map");
+            
             bike_list.forEach(bike => {
 
             });
