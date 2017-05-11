@@ -33,14 +33,7 @@ app.get('/', function(request, response) {
             bike_list.forEach(bike => {
 
             });
-
-            // map = new google.maps.Map(document.getElementById('map'), {
-            //   center: {
-            //     lat: 45.5236966,
-            //     lng: -122.660585
-            //   },
-            //   zoom: 13
-            // });
+            //these results are the current bike bounties, from the biketown api
             response.render('pages/index', {
                 results: bike_list
             });
