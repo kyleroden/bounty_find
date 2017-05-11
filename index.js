@@ -5,7 +5,7 @@ var faces = require('cool-ascii-faces');
 var pg = require('pg');
 var app = express();
 var request_super = require('superagent');
-var GoogleMapsLoader = require('google-maps');
+// var GoogleMapsLoader = require('google-maps');
 
 //json file with date and current count of Bounties
 
@@ -30,12 +30,6 @@ app.get('/', function(request, response) {
             const bike_list = res.body.data.bikes;
             //response.status(200).send(bike_list);
             const map_div = document.getElementById("map");
-            GoogleMapsLoader.load(function(google) {
-                new google.maps.Map(map_div, {
-                    lat: -25.363,
-                    lng: 131.044
-                });
-            });
             bike_list.forEach(bike => {
 
             });
