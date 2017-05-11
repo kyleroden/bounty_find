@@ -6,7 +6,7 @@ var pg = require('pg');
 var app = express();
 var request_super = require('superagent');
 // var GoogleMapsLoader = require('google-maps');
-
+pg.defaults.ssl = true;
 //json file with date and current count of Bounties
 
 
@@ -29,7 +29,7 @@ app.get('/', function(request, response) {
             }
             const bike_list = res.body.data.bikes;
             //response.status(200).send(bike_list);
-            
+
             bike_list.forEach(bike => {
 
             });
@@ -52,19 +52,20 @@ app.get('/cool', function(request, response) {
 
 
 app.get('/db', function(request, response) {
-    // pg.connect(process.env.DATABASE_URL || 'postgres://localhost:5000', function(err, client, done) {
-    //     client.query('SELECT * FROM test_table', function(err, result) {
-    //         done();
-    //         if (err) {
-    //             console.error(err);
-    //             response.send("ERROR ", err);
-    //         } else {
-    //             response.render('pages/db', {
-    //                 results: result.rows
-    //             });
-    //         }
-    //     });
-    // });
+    pg.connect(process.env.DATABASE_URL || 'postgres://localhost:5000/bikebounties', function(err, client, done) {
+        client.query('SELECT * FROM bounties', function(err, result) {
+            //done();
+            if (err) {
+                console.error(err);
+                response.send("ERROR ", err);
+            } else {
+                response.render('pages/db', {
+                    results: result.rows
+                });
+            }
+            client.end();
+        });
+    });
 });
 
 app.listen(app.get('port'), function() {
